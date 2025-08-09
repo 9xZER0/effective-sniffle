@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Systems Engineer & Competitive Programmer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #e0e6ed;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #00d9ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 217, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d9ff 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d9ff 0%, #0ea5e9 100%);
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e6ed;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #00d9ff;
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00d9ff;
+            display: block;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #00d9ff;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 217, 255, 0.1);
+            color: #00d9ff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 217, 255, 0.3);
+        }
+
+        .project-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e0e6ed;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-type {
+            color: #00d9ff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-description {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(100, 116, 139, 0.2);
+            color: #cbd5e1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: #00d9ff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Experience Section */
+        .experience {
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 50px;
+            bottom: -30px;
+            width: 2px;
+            background: linear-gradient(to bottom, #00d9ff, transparent);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-marker {
+            width: 30px;
+            height: 30px;
+            background: #00d9ff;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 10px;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e0e6ed;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-company {
+            color: #00d9ff;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-period {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: #cbd5e1;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #00d9ff;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.8);
+            text-align: center;
+            padding: 2rem 0;
+            color: #94a3b8;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .timeline-item::before {
+                display: none;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Your Name</h1>
+                <h2>Systems Engineer & Competitive Programmer</h2>
+                <p>Building efficient systems and solving complex algorithmic challenges. Passionate about low-level programming, distributed systems, and competitive coding.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="/resume.pdf" class="btn btn-secondary">Download Resume</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">1500+</span>
+                            <span class="stat-label">Problems Solved</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Expert</span>
+                            <span class="stat-label">Codeforces Rating</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Projects Built</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3.8</span>
+                            <span class="stat-label">GPA</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="color: #cbd5e1; margin-bottom: 1.5rem;">I'm a passionate systems engineering student with a strong foundation in competitive programming and low-level system design. My journey in computer science began with algorithmic problem-solving, which taught me to think critically and optimize solutions for both time and space complexity.</p>
+                        
+                        <p style="color: #cbd5e1; margin-bottom: 1.5rem;">Currently pursuing my degree in Systems Engineering, I focus on building efficient, scalable systems and exploring the intersection of hardware and software. My competitive programming background gives me a unique perspective on performance optimization and algorithmic thinking in real-world applications.</p>
+                        
+                        <p style="color: #cbd5e1;">When I'm not coding, you can find me participating in programming contests, contributing to open-source projects, or exploring the latest developments in systems architecture and distributed computing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Go</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Systems & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">GCP</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Competitive Programming</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Data Structures</span>
+                            <span class="skill-tag">Algorithms</span>
+                            <span class="skill-tag">Dynamic Programming</span>
+                            <span class="skill-tag">Graph Theory</span>
+                            <span class="skill-tag">Number Theory</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Databases & Frameworks</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">React</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Distributed Task Queue</div>
+                            <div class="project-type">Systems Programming</div>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">Built a high-performance distributed task queue system in Go with Redis backend, supporting priority queues, task retries, and horizontal scaling. Handles 10k+ tasks per second.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Go</span>
+                                <span class="tech-tag">Redis</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">gRPC</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">GitHub</a>
+                                <a href="#" class="project-link">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Algorithm Visualizer</div>
+                            <div class="project-type">Web Application</div>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">Interactive web application for visualizing sorting algorithms, graph algorithms, and data structures. Features real-time animations and step-by-step execution control.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">D3.js</span>
+                                <span class="tech-tag">CSS3</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">GitHub</a>
+                                <a href="#" class="project-link">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Memory Allocator</div>
+                            <div class="project-type">System Programming</div>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">Custom memory allocator in C implementing buddy allocation and slab allocation strategies. Optimized for performance with 15% better throughput than standard malloc.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">C</span>
+                                <span class="tech-tag">Assembly</span>
+                                <span class="tech-tag">Linux</span>
+                                <span class="tech-tag">Valgrind</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">GitHub</a>
+                                <a href="#" class="project-link">Report</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Competitive Programming Library</div>
+                            <div class="project-type">Algorithm Implementation</div>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">Comprehensive C++ template library with optimized implementations of common algorithms and data structures for competitive programming contests.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">STL</span>
+                                <span class="tech-tag">Templates</span>
+                                <span class="tech-tag">Algorithms</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">GitHub</a>
+                                <a href="#" class="project-link">Documentation</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Network Scanner</div>
+                            <div class="project-type">Security Tool</div>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">Multi-threaded network scanner in Python for port scanning, service detection, and vulnerability assessment. Features TCP/UDP scanning and OS fingerprinting.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Sockets</span>
+                                <span class="tech-tag">Threading</span>
+                                <span class="tech-tag">Nmap</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">GitHub</a>
+                                <a href="#" class="project-link">Tutorial</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Blockchain Implementation</div>
+                            <div class="project-type">Distributed Systems</div>
+                        </div>
+                        <div class="project-body">
+                            <p class="project-description">Simplified blockchain implementation with proof-of-work consensus, transaction validation, and peer-to-peer networking. Educational project exploring cryptocurrency fundamentals.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Cryptography</span>
+                                <span class="tech-tag">Networking</span>
+                                <span class="tech-tag">JSON</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">GitHub</a>
+                                <a href="#" class="project-link">Paper</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Software Engineering Intern</h3>
+                            <div class="timeline-company">Tech Company</div>
+                            <div class="timeline-period">Summer 2024</div>
+                            <p class="timeline-description">Developed microservices for real-time data processing pipeline handling 1M+ events per day. Implemented caching strategies that reduced API response times by 40%. Collaborated with senior engineers on system architecture design.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Research Assistant</h3>
+                            <div class="timeline-company">University Computer Science Department</div>
+                            <div class="timeline-period">Jan 2024 - Present</div>
+                            <p class="timeline-description">Working on distributed systems research focusing on consensus algorithms and fault tolerance. Implementing and testing Byzantine fault-tolerant protocols in simulated network environments.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Teaching Assistant - Data Structures</h3>
+                            <div class="timeline-company">University</div>
+                            <div class="timeline-period">Sep 2023 - Dec 2023</div>
+                            <p class="timeline-description">Assisted in teaching undergraduate data structures course. Conducted lab sessions, graded assignments, and helped students with algorithm implementation and complexity analysis.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Programming Contest Coach</h3>
+                            <div class="timeline-company">University ACM Chapter</div>
+                            <div class="timeline-period">Jan 2023 - Present</div>
+                            <p class="timeline-description">Train and mentor junior students for programming contests including ICPC. Organize practice sessions, mock contests, and workshops on advanced algorithms and problem-solving techniques.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p style="color: #cbd5e1; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    I'm always interested in discussing new opportunities, challenging projects, or just chatting about algorithms and systems design. Feel free to reach out!
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@gmail.com" class="contact-link">
+                        <span>📧</span> your.email@gmail.com
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" class="contact-link">
+                        <span>💼</span> LinkedIn
+                    </a>
+                    <a href="https://github.com/yourusername" class="contact-link">
+                        <span>🔗</span> GitHub
+                    </a>
+                    <a href="https://codeforces.com/profile/yourusername" class="contact-link">
+                        <span>🏆</span> Codeforces
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Name. Built with HTML, CSS, and passion for clean code.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Update active nav link based on scroll position
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
